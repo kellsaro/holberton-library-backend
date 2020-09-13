@@ -4,6 +4,7 @@
 #
 #  id                :bigint           not null, primary key
 #  borrowed_at       :datetime
+#  code              :string           not null
 #  returned_at       :datetime
 #  should_be_back_at :date
 #  created_at        :datetime         not null
@@ -14,6 +15,7 @@
 # Indexes
 #
 #  index_book_items_on_book_id     (book_id)
+#  index_book_items_on_code        (code) UNIQUE
 #  index_book_items_on_library_id  (library_id)
 #
 # Foreign Keys
@@ -22,6 +24,8 @@
 #  fk_rails_...  (library_id => libraries.id)
 #
 class BookItem < ApplicationRecord
-  belongs_to :book
-  belongs_to :library
+  belongs_to :book, inverse_of: :book_items
+  belongs_to :library, inverse_of: :book_items
+
+  validate :code, presence: true
 end

@@ -35,12 +35,14 @@ ActiveRecord::Schema.define(version: 2020_09_13_050627) do
   create_table "book_items", force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "library_id", null: false
+    t.string "code", null: false
     t.datetime "borrowed_at"
     t.date "should_be_back_at"
     t.datetime "returned_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["book_id"], name: "index_book_items_on_book_id"
+    t.index ["code"], name: "index_book_items_on_code", unique: true
     t.index ["library_id"], name: "index_book_items_on_library_id"
   end
 

@@ -9,7 +9,7 @@
 #  updated_at :datetime         not null
 #
 class Author < ApplicationRecord
-  has_many :books
+  has_many :books, inverse_of: :author, dependent: :destroy
 
   validates :name, presence: true
 end

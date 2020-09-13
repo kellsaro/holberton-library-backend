@@ -20,6 +20,6 @@
 #  fk_rails_...  (genre_id => genres.id)
 #
 class BookGenre < ApplicationRecord
-  belongs_to :book
-  belongs_to :genre
+  belongs_to :book, inverse_of: :book_genres
+  belongs_to :genre, inverse_of: :book_genres
 end

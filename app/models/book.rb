@@ -26,11 +26,14 @@
 #  fk_rails_...  (category_id => categories.id)
 #
 class Book < ApplicationRecord
-  belongs_to :author
-  belongs_to :category
+  belongs_to :author, inverse_of: :books
+  has_many :book_genres, inverse_of: :book
+  has_many :genres, through: :book_genres
+  has_many :book_items, inverse_of: :book
+  has_many :libraries, through: :book_items
 
-  has_many :book_items
-
-  validate :title, :isbn, :price, :edition, :pages, :published_at, presence: true
+  validate :title, :isbn, :price_cents, :edition, :pages, :published_at, presence: true
   validate :edition, :pages, numericality: { only_integer: true, greater_than: 0 }
+
+  monetize :price_cents
 end

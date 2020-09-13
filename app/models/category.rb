@@ -12,7 +12,7 @@
 #  index_categories_on_name  (name) UNIQUE
 #
 class Category < ApplicationRecord
-  has_many :genres
+  has_many :genres, inverse_of: :category
 
   validates :name, presence: true
 end
