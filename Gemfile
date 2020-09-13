@@ -32,6 +32,12 @@ gem 'sorbet-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'master'
+  end
+
+  gem 'faker'
 end
 
 group :development do
@@ -41,6 +47,10 @@ group :development do
   gem 'rubocop', '~> 0.90.0'
   gem 'rails_best_practices'
   gem 'annotate'
+end
+
+group :test do
+  gem 'factory_bot_rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
