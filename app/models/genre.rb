@@ -21,4 +21,6 @@ class Genre < ApplicationRecord
   belongs_to :category, inverse_of: :genres
   has_many :book_genres, inverse_of: :genres
   has_many :books, through: :book_genres
+
+  validates :name, presence: true
 end

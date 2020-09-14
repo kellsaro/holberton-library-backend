@@ -32,8 +32,8 @@ class Book < ApplicationRecord
   has_many :book_items, inverse_of: :book
   has_many :libraries, through: :book_items
 
-  validate :title, :isbn, :price_cents, :edition, :pages, :published_at, presence: true
-  validate :edition, :pages, numericality: { only_integer: true, greater_than: 0 }
+  validates :title, :isbn, :price_cents, :edition, :pages, :published_at, presence: true
+  validates :edition, :pages, numericality: { only_integer: true, greater_than: 0 }
 
   monetize :price_cents
 end

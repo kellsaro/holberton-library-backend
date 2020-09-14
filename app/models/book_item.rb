@@ -27,5 +27,5 @@ class BookItem < ApplicationRecord
   belongs_to :book, inverse_of: :book_items
   belongs_to :library, inverse_of: :book_items
 
-  validate :code, presence: true
+  validates :code, presence: true
 end
