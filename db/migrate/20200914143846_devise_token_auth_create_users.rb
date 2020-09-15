@@ -3,16 +3,16 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[6.0]
     
     create_table(:users) do |t|
       ## Required
-      t.string :provider, :null => false, :default => "email"
-      t.string :uid, :null => false, :default => ""
+      t.string :provider, null: false, default: 'email'
+      t.string :uid, null: false, default: ''
 
       ## Database authenticatable
-      t.string :encrypted_password, :null => false, :default => ""
+      t.string :encrypted_password, null: false, default: ''
 
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
-      t.boolean  :allow_password_change, :default => false
+      t.boolean  :allow_password_change, default: false
 
       ## Rememberable
       t.datetime :remember_created_at
@@ -36,6 +36,9 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[6.0]
 
       ## Tokens
       t.json :tokens
+
+      ## From Acceptance criteria
+      t.boolean :staff, null: false, default: false
 
       t.timestamps
     end
